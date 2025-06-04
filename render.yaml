@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: django-tweet-app
+    en v: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn DjangoProject2.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: DjangoProject2.settings
+      - key: SECRET_KEY
+        value: your_django_secret_key
