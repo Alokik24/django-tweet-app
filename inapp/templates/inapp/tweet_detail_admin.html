@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+	Tweet Details - Admin
+{% endblock %}
+
+{% block content %}
+	<h2>Tweet Details</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>User:</strong>{{ tweet.user.username }}</li>
+        <li class="list-group-item"><strong>Text:</strong>{{ tweet.text }}</li>
+        <li class="list-group-item"><strong>Created at:</strong>{{ tweet.created_at }}</li>
+        <li class="list-group-item"><strong>Edited At:</strong>
+            {% if tweet.edited_at %}
+                {{ tweet.edited_at | date:"M d, Y H:i" }}
+            {% else %}
+                <p>Not edited</p>
+            {% endif %}
+        </li>
+        {% if tweet.photo %}
+            <li class="list-group-item"><strong> Photo </strong><br>
+            <img src="{{ tweet.photo.url }}" alt="tweet Photo" style="max-width: 200px;">
+            </li>
+        {% endif %}
+    </ul>
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary mt-3"> Return to dashboard</a>
+{% endblock %}

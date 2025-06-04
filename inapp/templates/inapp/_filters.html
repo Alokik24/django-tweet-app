@@ -1,0 +1,47 @@
+<!-- _filters.html -->
+<form method="get" class="row g-3 mb-4 align-items-end">
+    <div class="col-md-3">
+        <label for="search" class="form-label">Search tweets</label>
+        <input type="text" name="q" id="search" value="{{ query }}" class="form-control" placeholder="Search by text or user...">
+    </div>
+
+    <div class="col-md-2">
+        <label for="user" class="form-label">Filter by User</label>
+        <select name="user" id="user" class="form-select">
+            <option value="">All users</option>
+            {% for user in all_users %}
+                <option value="{{ user.username }}" {% if user.username == user_filter %}selected{% endif %}>{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-check mt-4">
+            <input type="checkbox" name="edited_only" id="edited_only" class="form-check-input" {% if edited_only %}checked{% endif %}>
+            <label class="form-check-label" for="edited_only">Edited Only</label>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">Start Date</label>
+        <input type="date" name="start_date" value="{{ start_date }}" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <label class="form-label">End Date</label>
+        <input type="date" name="end_date" value="{{ end_date }}" class="form-control">
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-check mt-4">
+            <input type="checkbox" name="flagged_only" id="flagged_only" class="form-check-input" {% if flagged_only %}checked{% endif %}>
+            <label class="form-check-label" for="flagged_only">Reported</label>
+        </div>
+    </div>
+
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary w-100">Filter</button>
+    </div>
+    <div class="col-md-1">
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary w-100">Reset</a>
+    </div>
+</form>

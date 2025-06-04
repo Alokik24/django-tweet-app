@@ -1,0 +1,11 @@
+# Auto normalize line endings
+* text=auto
+
+# Keep Unix endings for code
+*.py text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# Windows-style for config files (optional)
+*.bat text eol=crlf
